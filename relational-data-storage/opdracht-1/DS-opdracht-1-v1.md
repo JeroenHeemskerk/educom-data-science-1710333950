@@ -1,21 +1,16 @@
 ```mermaid
 erDiagram
-  company }|--|| contact_info_company : completes
+  company ||--|| contact_info : completes
+  company }|--|| postalcode : expands
   company{
   int id pk
-  varchar  email
-  varchar phonenumber
   varchar housenumber
   varchar name
-}
-
-  contact_info_company }|--|| postalcode : expands
-  contact_info_company{
-  int  id  pk
-  int company_id fk
   varchar postalcode fk
+  int contact_id fk
 }
 
+  
   postalcode }|--|| place : expands
   postalcode{
   int id pk
@@ -45,17 +40,16 @@ erDiagram
   varchar country
 }
   employee }|--|| company : employs
+  employee ||--|| contact_info : completes
   employee{
   int id pk
   varchar name
+  int contact_id fk
   int company_id fk
 }
 
-  %% I don't know how to include the email and phonenumber in a single table without constructing a circular conneciton
-  contact_info_employee }|--|| employee : contact
-  contact_info_employee{
+  contact_info{
   int  id  pk
-  int employee_id fk
   varchar  email uk
   varchar phonenumber
 }
