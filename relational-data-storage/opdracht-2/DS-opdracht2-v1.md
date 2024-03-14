@@ -6,6 +6,24 @@ erDiagram
   varchar(50) name
 }
 
+  mhl_detaildefs }|--|| mhl_detailgroups : grouped
+  mhl_detaildefs{
+  int(11) id pk
+  int(11) vlevel
+  int(11) group_ID
+  int(11) display_order
+  varchar(100) properties
+  int(11) propertytype_ID fk
+  char(25) property_DEF
+  varchar(50) display_name
+}
+
+  mhl_detailgroups{
+  int(11) id pk
+  int(11) display_order
+  varchar(25) name
+}
+
   mhl_cities }|--|| mhl_communes : location
   mhl_cities{
   int(11) id pk
@@ -25,6 +43,18 @@ erDiagram
   varchar(50) name
 }
 
+  mhl_departments{
+  int(11) id pk
+  varchar(50) name
+}
+
+  mhl_countries{
+  int(11) id pk
+  varchar(2) code
+  varchar(80) name
+  set() display
+}
+
   mhl_contacts }|--|| mhl_suppliers : employs
   mhl_contacts{
   int(11) id pk
@@ -36,36 +66,6 @@ erDiagram
   varchar(75)  tel
 }
 
-  mhl_countries{
-  int(11) id pk
-  varchar(2) code
-  varchar(80) name
-  set() display
-}
-
-  mhl_departments{
-  int(11) id pk
-  varchar(50) name
-}
-
-  mhl_detaildefs }|--|| mhl_detailgroups : grouped
-  mhl_detaildefs{
-  int(11) id pk
-  int(11) vlevel
-  int(11) group_ID
-  int(11) display_order
-  varchar(100) properties
-  int(11) propertytype_ID fk
-  char(25) property_DEF
-  varchar(50) display_name
-}
-
-  mhl_detailgroups{
-  int(11) id pk
-  int(11) display_order
-  varchar(25) name
-}
-
   mhl_districts }|--|| mhl_countries : location
   mhl_districts{
   int(11) id pk
@@ -75,18 +75,12 @@ erDiagram
   int(11) display_order
 }
 
+  mhl_hitcount }|--|| mhl_suppliers : test
   mhl_hitcount{
   int(11) supplier_ID pk
   smallint(6) year pk
   tinyint(4) month pk
   int(11) hitcount
-}
-
-  mhl_membertypes{
-  int(11) id pk
-  varchar(20) name
-  smallint(6) sort_order
-  int(11) ulevel
 }
 
   mhl_properties }|--|| mhl_suppliers : belongs
@@ -107,13 +101,6 @@ erDiagram
   set(YN)  is_filter
 }
 
-  mhl_rubieken{
-  int(11) id pk
-  int(11)  parent
-  int(11)  display_order
-  char(50) name
-}
-
   mhl_suppliers{
   int(11) id pk
   int(11) membertype
@@ -128,17 +115,34 @@ erDiagram
   int(11) p_city_ID
 }
 
+  mhl_suppliers_mhl_rubiek_view ||--|| mhl_suppliers : test
   mhl_suppliers_mhl_rubiek_view{
   int(11) id pk
   int(11)  mhl_suppliers_ID fk
   int(11)  mhl_rubriek_view_ID
 }
 
+  mhl_yn_properties ||--|| mhl_suppliers : test
+  mhl_yn_properties ||--|| mhl_propertytypes : test
   mhl_yn_properties{
   int(11) id pk
   int(11)  supplier_ID fk
   int(11)  propertytype_ID fk
   set(YN)   content
+}
+
+  mhl_membertypes{
+  int(11) id pk
+  varchar(20) name
+  smallint(6) sort_order
+  int(11) ulevel
+}
+
+  mhl_rubieken{
+  int(11) id pk
+  int(11)  parent
+  int(11)  display_order
+  char(50) name
 }
 
   pc_lat_long{
