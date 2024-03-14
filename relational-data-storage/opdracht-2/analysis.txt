@@ -1,0 +1,2 @@
+Few things stand out to me in this file.
+First off customer and employee both contain address and contact data, that could be relegated to a different table both refer to
