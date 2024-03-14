@@ -1,1 +1,1 @@
-SELECT a.name, straat, huisnr, postcode FROM mhl_suppliers a INNER JOIN mhl_membertypes b on a.membertype=b.id; 
+SELECT a.name, a.straat, a.huisnr, a.postcode FROM mhl_suppliers a INNER JOIN mhl_membertypes b on a.membertype=b.id WHERE b.name='Silver' or b.name='Bronze' or b.name='Gold' or b.name= 'GEEN INTERRESSE'; 
