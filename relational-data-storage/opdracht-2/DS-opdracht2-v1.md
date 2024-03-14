@@ -131,6 +131,15 @@ erDiagram
   set(YN)   content
 }
 
+  pc_lat_long ||--|| mhl_suppliers : postcode
+  pc_lat_long{
+  int(11) id pk
+  char(6) pc6 fk
+  decimal lat
+  decimal lng
+}
+
+
   mhl_membertypes{
   int(11) id pk
   varchar(20) name
@@ -143,13 +152,6 @@ erDiagram
   int(11)  parent
   int(11)  display_order
   char(50) name
-}
-
-  pc_lat_long{
-  int(11) id pk
-  char(6) pc6 fk
-  decimal lat
-  decimal lng
 }
 
 ```
