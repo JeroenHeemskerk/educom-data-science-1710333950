@@ -1,0 +1,5 @@
+SELECT c.name FROM mhl_suppliers a
+INNER JOIN mhl_properties b ON a.id = b.supplier_ID
+INNER JOIN mhl_propertytypes c ON b.propertytype_ID = c.id  
+WHERE c.name = 'specialistische leverancier'
+OR c.name = 'ook voor particulieren';
