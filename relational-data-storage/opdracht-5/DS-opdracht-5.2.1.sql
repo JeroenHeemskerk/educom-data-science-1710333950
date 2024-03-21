@@ -8,7 +8,7 @@ CASE
     ELSE s.straat
     END AS addres,
 CASE
-    WHEN s.p_postcode <> "" THEN s.postcode
+    WHEN s.p_postcode <> "" THEN s.p_postcode
     ELSE s.postcode
     END as postcode
 FROM mhl_suppliers s
