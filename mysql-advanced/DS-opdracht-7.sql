@@ -52,10 +52,10 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER salary_aur
 AFTER UPDATE
-ON employees FOR EACH ROW
+ON sales FOR EACH ROW
 BEGIN
     IF OLD.salary <> new.salary THEN
-        INSERT INTO SalesChanges(salesId,beforeQuantity, afterQuantity)
+        INSERT INTO salarychange(employeenumber,beforeQuantity, afterQuantity)
         VALUES(old.employeenumber, old.salary, new.salary);
     END IF;
 END$$
