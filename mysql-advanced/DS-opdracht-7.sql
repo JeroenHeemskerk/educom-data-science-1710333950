@@ -36,3 +36,28 @@ lastname,
 firstName, 
 fired_check(date_fired) AS status
 FROM employees;
+
+DELIMITER $$
+
+CREATE PROCEDURE e_raise()
+BEGIN 
+	UPDATE employees 
+    SET salary = CAST(salary * 1.05 AS UNSIGNED);
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE TRIGGER salary_aur
+AFTER UPDATE
+ON employees FOR EACH ROW
+BEGIN
+    IF OLD.salary <> new.salary THEN
+        INSERT INTO SalesChanges(salesId,beforeQuantity, afterQuantity)
+        VALUES(old.employeenumber, old.salary, new.salary);
+    END IF;
+END$$
+
+DELIMITER ;
