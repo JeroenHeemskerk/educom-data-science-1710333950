@@ -23,7 +23,7 @@ erDiagram
   int(11) display_order
   varchar(25) name
 }
-
+  mhl_cities ||--|{ mhl_suppliers : location
   mhl_cities }|--|| mhl_communes : location
   mhl_cities{
   int(11) id pk
@@ -38,6 +38,17 @@ erDiagram
   varchar(40) name
 }
 
+
+  mhl_districts }|--|| mhl_countries : location
+  mhl_districts{
+  int(11) id pk
+  int(11) country_id
+  varchar(4) code
+  varchar(20) name
+  int(11) display_order
+}
+
+  mhl_companies o|--|{ mhl_suppliers : werkt_voor
   mhl_companies{
   int(11) id pk
   varchar(50) name
@@ -66,14 +77,6 @@ erDiagram
   varchar(75)  tel
 }
 
-  mhl_districts }|--|| mhl_countries : location
-  mhl_districts{
-  int(11) id pk
-  int(11) country_id
-  varchar(4) code
-  varchar(20) name
-  int(11) display_order
-}
 
   mhl_hitcount }|--|| mhl_suppliers : test
   mhl_hitcount{
@@ -139,7 +142,7 @@ erDiagram
   decimal lng
 }
 
-
+  mhl_membertypes ||--|| mhl_suppliers : member
   mhl_membertypes{
   int(11) id pk
   varchar(20) name
