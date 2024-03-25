@@ -27,3 +27,12 @@ END$$
 
 DELIMITER ; 
 
+DROP VIEW FIREDSTATUS;
+
+CREATE VIEW FIREDSTATUS AS
+SELECT 
+employeenumber,
+lastname,
+firstName, 
+fired_check(date_fired) AS status
+FROM employees;
